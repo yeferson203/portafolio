@@ -63,7 +63,7 @@ export const clientProjects = [
     ],
   },
   {
-    client: '@rapiburgermocoa',
+    client: '@rapiburger_01',
     title: 'Fotografía de Productos ',
     description: 'fotografia y edición.',
    media: [
@@ -100,7 +100,7 @@ export const clientProjects = [
   },
 
   {
-    client: '@rapiburgermocoa',
+    client: '@rapiburger_01',
     title: 'Fotografía de Eventos Especiales',
     description: 'fotografia y edición.',
      media: [
@@ -160,7 +160,7 @@ export const clientProjects = [
     ],
   },
   {
-    client: '@rapiburgermocoa',
+    client: '@rapiburger_01',
     title: 'Rells',
     description: 'Filmación y edición de video.',
     media: [
@@ -183,7 +183,7 @@ export const clientProjects = [
     ],
   },
   {
-    client: '@rapiburgermocoa',
+    client: '@rapiburger_01',
     title: 'Diseño Grafico para Redes Sociales',
     
     media: [
