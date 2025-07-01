@@ -10,6 +10,8 @@ export const clientProjects = [
       { type: 'image', url: '/assets/images/cal1.jpg' },
       { type: 'image', url: '/assets/images/cal2.jpg' },
       { type: 'image', url: '/assets/images/cal3.jpg' },
+      { type: 'image', url: '/assets/images/nhomplato.jpg' },
+      { type: 'image', url: '/assets/images/calde.jpg' },
      
     ],
   },
@@ -58,6 +60,7 @@ export const clientProjects = [
     media: [
       { type: 'image', url: '/assets/images/n1.jpg' },
       
+      
     
      
     ],
@@ -84,6 +87,19 @@ export const clientProjects = [
       {type: 'image', url: '/assets/images/c1.jpg'},
       {type: 'image', url: '/assets/images/c2.jpg'},
       {type: 'image', url: '/assets/images/c3.jpg'},
+      
+    ],
+  },
+         {
+    client: '@smtienda_makeup',
+    title: 'Fotografía productos',
+    description: 'fotografia y edición.',
+    media: [
+      {type: 'image', url: '/assets/images/sm3.jpg'},
+      {type: 'image', url: '/assets/images/sm.jpg'},
+     
+      {type: 'image', url: '/assets/images/sm2.jpg'},
+      {type: 'image', url: '/assets/images/sm4.jpg'},
       
     ],
   },
@@ -117,9 +133,11 @@ export const clientProjects = [
     description: 'fotografia y edición.',
     media: [
       { type: 'image', url: '/assets/images/nm1.webp' },
+      { type: 'image', url: '/assets/images/ng.webp' },
+      { type: 'image', url: '/assets/images/nhomadaevento.jpg' },
       { type: 'image', url: '/assets/images/n2.jpg' },
       { type: 'image', url: '/assets/images/n3.jpg' },
-      { type: 'image', url: '/assets/images/n4.jpg' },
+      
   
     ],
   },
