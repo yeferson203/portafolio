@@ -16,14 +16,17 @@ const AboutMeSection = () => {
         </div>
         <div className="md:w-1/2 text-gray-700 text-lg leading-relaxed">
           <p className="mb-6">
-            Soy productor audiovisual con enfoque creativo y estratégico. Me especializo en capturar ideas, momentos y emociones a través del video, la fotografía y la edición.
+            Soy Ingeniero de Sistemas y Tecnólogo en Desarrollo de Software, con amplia experiencia en el área de producción audiovisual, fotografía y mercadeo. Combino el pensamiento lógico y tecnológico con la creatividad visual para desarrollar soluciones integrales.
           </p>
+
           <p className="mb-6">
-            Creo contenido visual que conecta, transmite y vende. Cada proyecto es una oportunidad para contar una historia con intención y estilo.
+            Me especializo en la creación de contenido audiovisual estratégico que conecta, comunica y genera impacto, integrando video, fotografía, edición y herramientas digitales para potenciar marcas y proyectos.
           </p>
+
           <p>
-            Si buscas alguien que entienda tu visión y la convierta en una pieza visual efectiva, hablemos. Estoy listo para crear contigo.
+            Si buscas a alguien que entienda tu visión tanto desde lo técnico como lo creativo y la convierta en una pieza visual efectiva, hablemos. Estoy listo para crear contigo.
           </p>
+
         </div>
       </div>
     </section>

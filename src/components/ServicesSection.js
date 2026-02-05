@@ -2,12 +2,12 @@ import React from 'react';
 
 const ServicesSection = () => {
   const services = [
-        {
+    {
       title: 'Desarrollo Web y de Aplicativos',
       description: 'Diseño y desarrollo de sitios web y apps personalizadas con enfoque funcional, visual y responsive para potenciar tu presencia digital.',
       icon: (
-        <svg className="w-10 h-10 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 4h18M4 8h16v12H4zM4 8V6h16v2M10 12h4"></path>
+        <svg className="w-10 h-10 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 4h18M4 8h16v12H4zM4 8V6h16v2M10 12h4" />
         </svg>
       ),
     },
@@ -15,8 +15,8 @@ const ServicesSection = () => {
       title: 'Diseño Gráfico',
       description: 'Creación de logotipos, branding, material publicitario y diseño para redes sociales que capturan la esencia de tu marca.',
       icon: (
-        <svg className="w-10 h-10 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+        <svg className="w-10 h-10 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
         </svg>
       ),
     },
@@ -24,8 +24,8 @@ const ServicesSection = () => {
       title: 'Edición de Video',
       description: 'Post-producción profesional para videos corporativos, comerciales, documentales y contenido para redes, con un toque cinematográfico.',
       icon: (
-        <svg className="w-10 h-10 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+        <svg className="w-10 h-10 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
         </svg>
       ),
     },
@@ -33,9 +33,9 @@ const ServicesSection = () => {
       title: 'Fotografía',
       description: 'Sesiones fotográficas de producto, retrato, eventos y paisajes, capturando la esencia y el detalle con calidad profesional.',
       icon: (
-        <svg className="w-10 h-10 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
+        <svg className="w-10 h-10 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
         </svg>
       ),
     },
@@ -43,12 +43,20 @@ const ServicesSection = () => {
       title: 'Cinematografía',
       description: 'Producción de contenido audiovisual de alta calidad, desde la pre-producción hasta la post-producción, para proyectos ambiciosos.',
       icon: (
-        <svg className="w-10 h-10 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 4v16M17 4v16M3 8h4m-4 8h4m10-4h4m-4 4h4M7 8a4 4 0 100 8h10a4 4 0 100-8H7z"></path>
+        <svg className="w-10 h-10 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 4v16M17 4v16M3 8h4m-4 8h4m10-4h4m-4 4h4M7 8a4 4 0 100 8h10a4 4 0 100-8H7z" />
         </svg>
       ),
     },
-
+    {
+      title: 'Generación de Imágenes y Videos con IA',
+      description: 'Creación de imágenes y videos mediante inteligencia artificial para campañas publicitarias, contenido digital, conceptos visuales y piezas creativas innovadoras.',
+      icon: (
+        <svg className="w-10 h-10 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 3v3m6.364 1.636l-2.121 2.121M21 12h-3m-1.636 6.364l-2.121-2.121M12 21v-3m-6.364-1.636l2.121-2.121M3 12h3m1.636-6.364l2.121 2.121" />
+        </svg>
+      ),
+    },
   ];
 
   return (
@@ -56,6 +64,7 @@ const ServicesSection = () => {
       <h2 className="text-4xl sm:text-5xl font-bold text-center text-gray-900 mb-12">
         Mis Servicios
       </h2>
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {services.map((service, index) => (
           <div
