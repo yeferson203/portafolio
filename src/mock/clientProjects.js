@@ -369,7 +369,7 @@ export const clientProjects = [
 
     {
     client: '@Matefacil',
-    title: 'Rells',
+    title: 'Reels',
     description: 'Filmación y edición de video.',
     media: [
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1751235533/finall_jkwqre.mp4' },
@@ -382,7 +382,7 @@ export const clientProjects = [
 
   {
     client: '@emkasapasto',
-    title: 'Rells',
+    title: 'Reels',
     description: 'Filmación y edición de video.',
     media: [
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1751235357/finallllll_i2crce.mp4' },
@@ -392,7 +392,7 @@ export const clientProjects = [
   },
   {
     client: '@rapiburger_01',
-    title: 'Rells',
+    title: 'Reels',
     description: 'Filmación y edición de video.',
     media: [
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1751242017/rapiiis_uopwr0.mp4' },
@@ -405,7 +405,7 @@ export const clientProjects = [
   },
     {
     client: '@nhomadardm',
-    title: 'Rells',
+    title: 'Reels',
     description: 'Filmación y edición de video.',
     media: [
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1751252858/V%C3%ADdeo_sin_t%C3%ADtulo_Hecho_con_Clipchamp_1_jfxgqc.mp4' },
