@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FaInstagram } from 'react-icons/fa';
 import { clientProjects } from '../mock/clientProjects';
 import ProjectCarouselModal from './ProjectCarouselModal';
 
@@ -104,8 +105,12 @@ const PortfolioSection = () => {
                 <h3 className="text-2xl font-semibold text-gray-900 mb-2">
                   {project.title}
                 </h3>
-                <p className="text-gray-600 text-base mb-4">
-                  Cliente: <span className="font-medium text-black">{project.client}</span>
+                <p className="text-gray-600 text-base mb-4 flex items-center gap-2">
+                  Cliente:
+                  <span className="font-medium text-black flex items-center gap-1">
+                    <FaInstagram className="text-pink-600" />
+                    {project.client}
+                  </span>
                 </p>
                 <p className="text-gray-700 text-sm leading-relaxed">
                   {project.description}
