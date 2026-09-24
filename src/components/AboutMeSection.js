@@ -6,14 +6,7 @@ const AboutMeSection = () => {
       <h2 className="text-4xl sm:text-5xl font-bold text-center text-gray-900 mb-12">
         Sobre Mí
       </h2>
-      <div className="flex flex-col md:flex-row items-center md:space-x-12">
-        <div className="md:w-1/2 mb-8 md:mb-0">
-          {<img
-            src="/assets/images/fotolibretafondoblanco_.jpg"
-            alt="Perfil"
-            className="rounded-3xl shadow-2xl w-full h-auto object-cover"
-          />}
-        </div>
+
         <div className="md:w-1/2 text-gray-700 text-lg leading-relaxed">
           <p className="mb-6">
             Soy Ingeniero de Sistemas y Tecnólogo en Desarrollo de Software, con amplia experiencia en el área de producción audiovisual, fotografía y mercadeo. Combino el pensamiento lógico y tecnológico con la creatividad visual para desarrollar soluciones integrales.
