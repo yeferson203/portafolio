@@ -26,10 +26,10 @@ const PortfolioSection = () => {
   return (
     <section className="container mx-auto px-4 py-16 sm:py-24 bg-white rounded-2xl shadow-xl my-16">
       <h2 className="text-4xl sm:text-5xl font-bold text-center text-gray-900 mb-12">
-        Mi Portafolio de clientes 
+        Marcas y proyectos audiovisuales 
       </h2>
       <p className="text-center text-gray-600 text-lg mb-12">
-        He participado en la creación de contenido visual y audiovisual para 23  {new Set(clientProjects.map(p => p.client)).size} cuentas de Instagram, trabajando tanto en proyectos independientes como en proyectos desarrollados durante mi experiencia en agencias creativas.
+        He participado en la creación de contenido visual y audiovisual para {new Set(clientProjects.map(p => p.client)).size} cuentas de Instagram, trabajando tanto en proyectos independientes como en proyectos desarrollados durante mi experiencia en agencias creativas.
       </p>
 
       <div className="flex flex-wrap justify-center gap-4 mb-12">
