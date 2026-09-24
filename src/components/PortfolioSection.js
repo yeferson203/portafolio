@@ -29,7 +29,7 @@ const PortfolioSection = () => {
         Mi Portafolio de clientes 
       </h2>
       <p className="text-center text-gray-600 text-lg mb-12">
-        He trabajado con {new Set(clientProjects.map(p => p.client)).size} cuentas de Instagram creando contenido visual y audiovisual.
+        He participado en la creación de contenido visual y audiovisual para 23  {new Set(clientProjects.map(p => p.client)).size} cuentas de Instagram, trabajando tanto en proyectos independientes como en proyectos desarrollados durante mi experiencia en agencias creativas.
       </p>
 
       <div className="flex flex-wrap justify-center gap-4 mb-12">
