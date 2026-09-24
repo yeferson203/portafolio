@@ -9,7 +9,7 @@ const AboutMeSection = () => {
       <div className="flex flex-col md:flex-row items-center md:space-x-12">
         <div className="md:w-1/2 mb-8 md:mb-0">
           {<img
-            src="/assets/images/y1.png"
+            src="/assets/images/fotolibretafondoblanco_.jpg"
             alt="Perfil"
             className="rounded-3xl shadow-2xl w-full h-auto object-cover"
           />}
