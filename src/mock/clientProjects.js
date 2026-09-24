@@ -2,7 +2,7 @@ export const clientProjects = [
 
     {
     client: '@totemicabeauty',
-    title: 'Reels'+'@totemicabeauty',
+    title: 'Reels | @totemicabeauty',
     description: 'Filmación y edición de video.',
     media: [
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1770264438/Some_textures_speak_for_themselves_Nuestro_Jojoba_Oil_es_ese_gesto_simple_que_cambia_c%C3%B3mo_se_si_s2jw0k.mp4' },
