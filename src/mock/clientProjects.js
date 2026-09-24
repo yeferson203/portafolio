@@ -24,7 +24,7 @@ export const clientProjects = [
 
   {
     client: '@s.o.s.peluqueria',
-    title: 'Reels',
+    title: 'Reels | @s.o.s.peluqueria',
     description: 'Edición de video.',
     media: [
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1770270184/AQMxehyL8E4oGqzREjt5htHOIX3CxrFOW37WIQbwo1cH-u8LqeMHhmrr4Z0y89nSvk4ETL-vLRqA6HoRaAx3Msie1gat0_VM_zviuqj.mp4' },
@@ -48,7 +48,7 @@ export const clientProjects = [
 
   {
     client: '@_caffeto_',
-    title: 'Reels',
+    title: 'Reels | @_caffeto_',
     description: 'Edición de video y generación de IA.',
         media: [
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1770268399/AQOJc-fS-3CydbXcSCkWsxLUL2AvFtk33NTMVnDO5_-JXutv8OX9txHDAij4zGw-nz2qgspGrGJBremE0wBj2EhA2rfz751R_c7ddl0.mp4' },
@@ -70,7 +70,7 @@ export const clientProjects = [
 
   {
     client: '@absalonpasto',
-    title: 'Reels',
+    title: 'Reels | @absalonpasto',
     description: 'Filmación, edición de video y generación de IA.',
         media: [
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1770272128/AQPQMs_LgPROuZbi0W6zbtudKS7YOP0KuHzUgCYFCIEjW5fgk4545xxD7ihD-AjHJxr7kTfLUVhXNj82N43i47ez1lU24FwI_v6d6fy.mp4' },
@@ -92,7 +92,7 @@ export const clientProjects = [
 
   {
     client: '@opticaglobalvisioncenter',
-    title: 'Reels',
+    title: 'Reels | @opticaglobalvisioncenter',
     description: 'Edición de video.',
         media: [
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1770272079/%EF%B8%8F_%EF%B8%8F_Ver_doble_no_es_normalLa_visi%C3%B3n_doble_puede_tener_causas_oftalmol%C3%B3gicas_y_tambi%C3%A9n_neurol%C3%B3g_rarf5l.mp4' },
@@ -109,7 +109,7 @@ export const clientProjects = [
 
     {
     client: '@pollosorpresaoficial',
-    title: 'Reels',
+    title: 'Reels | @pollosorpresaoficial',
     description: 'Filmación y edición de video.',
     media: [
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1770266520/AQNP3CDfwV18zl69Pmb466nUVxPDz7gYUdB65eoGpcxaxgK3rL37SoSnZZLUi8gU6hsDgsfJN4uz07vRL2qtF6RL_gAz_J2Q_arm6g3.mp4' },
@@ -129,7 +129,7 @@ export const clientProjects = [
 
   {
     client: '@congustocolombia',
-    title: 'Reels',
+    title: 'Reels | @congustocolombia',
     description: 'Edición de video y generación de IA.',
         media: [
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1770271984/AQONLbNHb9E53eyTNL15n7eFN6NfB6TnhaBXT0nQu56a5f59Y0NF7AYLIiG3e64_Vq_kpNKfrASu3AYN96sBpWNvfxIVWo4__izjkgi.mp4' },
@@ -141,7 +141,7 @@ export const clientProjects = [
 
     {
     client: '@distrireina',
-    title: 'Reels',
+    title: 'Reels | @distrireina',
     description: 'Filmación, edición de video y generación de IA.',
         media: [
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1770270239/El_amor_y_la_amistad_no_se_viven_de_una_sola_manera_Hay_noches_que_piden_la_intensidad_de_un_cgrulx.mp4' },
@@ -160,7 +160,7 @@ export const clientProjects = [
 
 {
     client: '@vanalestudio',
-    title: 'Reels',
+    title: 'Reels | @vanalestudio',
     description: 'Filmación, edición de video y generación de IA.',
         media: [
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1770272276/AQOv4jQDG6GICGzOE99SoqL_MYqIQsMsBWkkvWfJJ1OF0Be_fRWTPYh0YFiNa-oov28PcNd5zEtLYBRVvKeOZIXdpvSc4LQl_eazra8.mp4' },
@@ -173,7 +173,7 @@ export const clientProjects = [
 
 {
     client: '@redbudassociates',
-    title: 'Reels',
+    title: 'Reels | @redbudassociates',
     description: 'Edición de video.',
         media: [
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1770272275/Holiday_movies_say_a_lot_about_us_the_humor_we_love_the_comfort_we_return_to_and_the_stories_izbkbg.mp4' },
@@ -184,7 +184,7 @@ export const clientProjects = [
 
 {
     client: '@kimeraventures',
-    title: 'Reels',
+    title: 'Reels | @kimeraventures',
     description: 'Edición de video.',
         media: [
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1770272236/From_field_goals_to_grilled_goals_game_days_with_Kimera_hit_different.Because_winning_isn_t_just_nfyemk.mp4' },
@@ -197,7 +197,7 @@ export const clientProjects = [
 
   {
     client: '@risalsas_oficial',
-    title: 'Reels',
+    title: 'Reels | @risalsas_oficial',
     description: 'Edición de video y generación de IA.',
     media: [
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1770266126/Quieres_una_salsa_ranch_diferente_y_deliciosa_para_tu_negocio_Aqu%C3%AD_va_una_versi%C3%B3n_con_un_toque_w1mppz.mp4', },
