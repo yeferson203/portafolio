@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { FaInstagram } from 'react-icons/fa';
 import { clientProjects } from '../mock/clientProjects';
 import ProjectCarouselModal from './ProjectCarouselModal';
@@ -10,7 +10,11 @@ const PortfolioSection = () => {
   const [currentProjectTitle, setCurrentProjectTitle] = useState('');
   const [currentProjectInfo, setCurrentProjectInfo] = useState(null);
 
+  const [showAllBrands, setShowAllBrands] = useState(false);
+
   const uniqueClients = [...new Set(clientProjects.map(project => project.client))];
+
+  const duplicatedClients = useMemo(() => [...uniqueClients, ...uniqueClients], [uniqueClients]);
 
   const openCarousel = (project) => {
     setCurrentProjectMedia(project.media);
@@ -59,39 +63,162 @@ const PortfolioSection = () => {
     return project.title;
   };
 
-  return (
-    <section className="container mx-auto px-4 py-16 sm:py-24 bg-white rounded-2xl shadow-xl my-16">
-      <h2 className="text-4xl sm:text-5xl font-bold text-center text-gray-900 mb-12">
-        Marcas y proyectos audiovisuales 
-      </h2>
-      <p className="text-center text-gray-600 text-lg mb-12">
-        He participado en la creación de contenido visual y audiovisual para {new Set(clientProjects.map(p => p.client)).size} cuentas de Instagram, trabajando tanto en proyectos independientes como en proyectos desarrollados durante mi experiencia en agencias creativas.
-      </p>
+  const handleResetFilter = () => {
+    setSelectedClient(null);
+  };
 
-      <div className="flex flex-wrap justify-center gap-4 mb-12">
-        <button
-          onClick={() => setSelectedClient(null)}
-          className={`px-6 py-3 rounded-full text-lg font-medium transition-all duration-300 ${
-            selectedClient === null
-              ? 'bg-black text-white shadow-md'
-              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-          }`}
-        >
-          Todos
-        </button>
-        {uniqueClients.map((client) => (
-          <button
-            key={client}
-            onClick={() => setSelectedClient(client)}
-            className={`px-6 py-3 rounded-full text-lg font-medium transition-all duration-300 ${
-              selectedClient === client
-                ? 'bg-black text-white shadow-md'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-            }`}
+  return (
+    <section className="container mx-auto px-4 py-16 sm:py-24 bg-white rounded-2xl shadow-xl my-16 overflow-hidden">
+      
+      {/* Estilos CSS para la animación del carrusel */}
+      <style>{`
+        @keyframes scrollBrands {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+        .animate-scroll-brands {
+          animation: scrollBrands 30s linear infinite;
+        }
+        /* Pausa el carrusel al pasar el mouse sobre cualquier parte del contenedor */
+        .carrusel-container:hover .animate-scroll-brands {
+          animation-play-state: paused;
+        }
+        /* Efecto de agrandado y cambio de color en la marca individual al hacer hover */
+        .brand-button {
+          transition: all 0.3s ease;
+          cursor: pointer;
+        }
+        .brand-button:hover {
+          transform: scale(1.15);
+          background-color: #000 !important;
+          color: #fff !important;
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+          z-index: 20;
+          position: relative;
+        }
+        /* Muestra un pequeño tooltip al hacer hover 
+        .brand-button:hover::after {
+          content: 'Clic para filtrar';
+          position: absolute;
+          bottom: -28px;
+          left: 50%;
+          transform: translateX(-50%);
+          background-color: #1f2937;
+          color: #fff;
+          font-size: 11px;
+          padding: 3px 8px;
+          border-radius: 6px;
+          white-space: nowrap;
+          pointer-events: none;
+          opacity: 0.95;
+        }*/
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
+
+      {selectedClient === null && (
+        <>
+          <h2 className="text-4xl sm:text-5xl font-bold text-center text-gray-900 mb-12">
+            Marcas y proyectos audiovisuales 
+          </h2>
+          <p className="text-center text-gray-600 text-lg mb-12">
+            He participado en la creación de contenido visual y audiovisual para {new Set(clientProjects.map(p => p.client)).size} cuentas de Instagram, trabajando tanto en proyectos independientes como en proyectos desarrollados durante mi experiencia en agencias creativas.
+          </p>
+        </>
+      )}
+
+      <div className="flex flex-col items-center gap-6 mb-12">
+        
+        {selectedClient === null ? (
+          <>
+            {!showAllBrands ? (
+              // CARRUSEL AUTOMÁTICO
+              <div className="carrusel-container w-full max-w-5xl overflow-hidden relative py-4">
+                
+                {/* Degradados laterales para suavizar la entrada/salida */}
+                <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+                <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+                
+                {/* Indicador visual: texto que aparece solo al hacer hover sobre el carrusel */}
+                <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 text-xs text-gray-400 opacity-0 transition-opacity duration-300 pointer-events-none z-20 carrusel-hint">
+                  ⏸ Pausado
+                </div>
+                
+                <div className="flex gap-4 animate-scroll-brands w-max">
+                  {duplicatedClients.map((client, index) => (
+                    <button
+                      key={`${client}-${index}`}
+                      onClick={() => setSelectedClient(client)}
+                      className="brand-button px-6 py-3 rounded-full text-lg font-medium bg-gray-100 text-gray-700 whitespace-nowrap flex-shrink-0"
+                    >
+                      {client}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              // TODAS LAS MARCAS EN GRID ESTÁTICO
+              <div className="flex flex-wrap justify-center gap-4 max-w-5xl">
+                {uniqueClients.map((client) => (
+                  <button
+                    key={client}
+                    onClick={() => setSelectedClient(client)}
+                    className="px-6 py-3 rounded-full text-lg font-medium transition-all duration-300 bg-gray-100 text-gray-700 hover:bg-black hover:text-white hover:scale-110 hover:shadow-lg"
+                  >
+                    {client}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            <button
+            onClick={() => setShowAllBrands(!showAllBrands)}
+            className="px-6 py-3 rounded-full text-lg font-medium 
+                      bg-white text-gray-900 border border-gray-300 
+                      shadow-sm
+                      transition-all duration-300 ease-in-out
+                      hover:bg-black hover:text-white hover:scale-110 
+                      hover:shadow-xl hover:border-black
+                      flex items-center gap-2"
           >
-            {client}
+            {showAllBrands ? 'Ver menos' : 'Ver todas las marcas'}
+            <svg 
+              className={`w-4 h-4 transition-transform duration-300 ${showAllBrands ? 'rotate-180' : ''}`} 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+            </svg>
           </button>
-        ))}
+          </>
+        ) : (
+          <div className="flex flex-wrap justify-center gap-4">
+            <button
+              className="px-6 py-3 rounded-full text-lg font-medium transition-all duration-300 bg-black text-white shadow-md cursor-default"
+            >
+              {selectedClient}
+            </button>
+            <button
+              onClick={handleResetFilter}
+              className="px-6 py-3 rounded-full text-lg font-medium transition-all duration-300 bg-gray-100 text-gray-700 hover:bg-gray-200 flex items-center gap-2"
+            >
+              Ver más
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          </div>
+        )}
       </div>
 
       {selectedClient === null ? (
@@ -130,10 +257,9 @@ const PortfolioSection = () => {
                   />
                 )}
 
-                {/* Overlay al hacer hover */}
                 <div className="absolute inset-0 backdrop-blur-sm bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-white text-sm font-medium">Haz clic para ver más</span>
-              </div>
+                  <span className="text-white text-sm font-medium">Haz clic para ver más</span>
+                </div>
               </div>
 
               <div className="p-6">
@@ -150,7 +276,6 @@ const PortfolioSection = () => {
                   {project.title}
                 </h3>
                 <p className="text-gray-600 text-base mb-4 flex items-center gap-2">
-
                   <span className="font-medium text-black flex items-center gap-1">
                     <FaInstagram className="text-pink-600" />
                     {project.client}
@@ -160,7 +285,6 @@ const PortfolioSection = () => {
                   {project.description}
                 </p>
 
-                {/* Texto indicador al fondo visible solo al hacer hover */}
                 <p className="mt-4 text-sm text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-1">
                   <svg className="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" strokeWidth="2"
                     viewBox="0 0 24 24">
