@@ -21,7 +21,6 @@ const AboutMeSection = () => {
           </p>
 
         </div>
-      </div>
     </section>
   );
 };
