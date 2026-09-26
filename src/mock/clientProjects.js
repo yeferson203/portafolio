@@ -1,4 +1,4 @@
-export const clientProjects = [
+const rawClientProjects = [
 
     {
     client: '@totemicabeauty',
@@ -440,3 +440,11 @@ export const clientProjects = [
 
 
 ];
+
+// Cada proyecto indica si se realizó como trabajo de agencia o de forma
+// personal/independiente. Por defecto se marcan como 'Personal'; edita el
+// campo `workType` de un proyecto puntual (valor 'Agencia') para corregirlo.
+export const clientProjects = rawClientProjects.map((project) => ({
+  workType: 'Personal',
+  ...project,
+}));
