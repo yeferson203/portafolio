@@ -4,6 +4,9 @@ const rawClientProjects = [
     client: '@totemicabeauty',
     title: 'Reels | @totemicabeauty',
     description: 'Filmación y edición de video.',
+    customNarrative: 'Totémica Beauty, marca de cosméticos enfocada en el cuidado de la piel, fue un proyecto en el que participé en la filmación, edición y generación de contenido visual mediante inteligencia artificial, contribuyendo al desarrollo de su identidad audiovisual en Instagram.',
+    workType: 'Agencia',
+    country: 'US',
     media: [
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1770264438/Some_textures_speak_for_themselves_Nuestro_Jojoba_Oil_es_ese_gesto_simple_que_cambia_c%C3%B3mo_se_si_s2jw0k.mp4' },
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1770266131/ssstik.io__totemicabeauty_1770265502385_ioox4w.mp4'},
@@ -26,6 +29,8 @@ const rawClientProjects = [
     client: '@s.o.s.peluqueria',
     title: 'Reels | @s.o.s.peluqueria',
     description: 'Edición de video.',
+    workType: 'Agencia',
+    country: 'COL',
     media: [
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1770270184/AQMxehyL8E4oGqzREjt5htHOIX3CxrFOW37WIQbwo1cH-u8LqeMHhmrr4Z0y89nSvk4ETL-vLRqA6HoRaAx3Msie1gat0_VM_zviuqj.mp4' },
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1770269798/AQNpra8gLMJKZ37zrnEl3LFQCQAeLxX_OWuBe6L1T5uAB5XoqW2xvUuItlW8hFYLSTFDXpO2saNfpjW-iS_G16oVQEG1zNXp_br5kxu.mp4' },
@@ -50,6 +55,8 @@ const rawClientProjects = [
     client: '@_caffeto_',
     title: 'Reels | @_caffeto_',
     description: 'Edición de video y generación de IA.',
+    workType: 'Agencia',
+    country: 'COL',
         media: [
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1770268399/AQOJc-fS-3CydbXcSCkWsxLUL2AvFtk33NTMVnDO5_-JXutv8OX9txHDAij4zGw-nz2qgspGrGJBremE0wBj2EhA2rfz751R_c7ddl0.mp4' },
             { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1770268410/AQPf1IUAt8hLd6Q7SIEQ5U3WL1qU6cv1_6gEm_GkfqonnFhAHSS7Yav5xLwnTDRClzA8hNpIP7pGNCvqvW7NFKJ1qh4KpkTB_xdmhpf.mp4' },
@@ -72,6 +79,8 @@ const rawClientProjects = [
     client: '@absalonpasto',
     title: 'Reels | @absalonpasto',
     description: 'Filmación, edición de video y generación de IA.',
+    country: 'COL',
+    workType: 'Agencia',
         media: [
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1770272128/AQPQMs_LgPROuZbi0W6zbtudKS7YOP0KuHzUgCYFCIEjW5fgk4545xxD7ihD-AjHJxr7kTfLUVhXNj82N43i47ez1lU24FwI_v6d6fy.mp4' },
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1770272135/AQMkXOjx3HEWeSzdmN3Lv-G90Wcy4XGKN7BvxUG3axQCknVs97I2fIbsoqlEG9gTvOulpJPMGYu1GrYkDyg1q5pxNUjoqiJj_rjxzpi.mp4' },
@@ -94,6 +103,8 @@ const rawClientProjects = [
     client: '@opticaglobalvisioncenter',
     title: 'Reels | @opticaglobalvisioncenter',
     description: 'Edición de video.',
+    country: 'COL',
+    workType: 'Agencia',
         media: [
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1770272079/%EF%B8%8F_%EF%B8%8F_Ver_doble_no_es_normalLa_visi%C3%B3n_doble_puede_tener_causas_oftalmol%C3%B3gicas_y_tambi%C3%A9n_neurol%C3%B3g_rarf5l.mp4' },
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1770272078/%EF%B8%8F_Sab%C3%ADas_que_una_sola_consulta_puede_marcar_la_diferencia_entre_detectar_a_tiempo_una_enferme_fzxt8x.mp4' },
@@ -111,6 +122,8 @@ const rawClientProjects = [
     client: '@pollosorpresaoficial',
     title: 'Reels | @pollosorpresaoficial',
     description: 'Filmación y edición de video.',
+    country: 'COL',
+    workType: 'Agencia',
     media: [
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1770266520/AQNP3CDfwV18zl69Pmb466nUVxPDz7gYUdB65eoGpcxaxgK3rL37SoSnZZLUi8gU6hsDgsfJN4uz07vRL2qtF6RL_gAz_J2Q_arm6g3.mp4' },
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1770266518/AQNh6MyiGL_USk9wEoqrXN88n-IAbXovT-7RiQeVmLhM_bi_nCRg5k2iwhtT7yL--VaR1lTzHXIS1iqY-gAPGfATmRmN67cU_vewpqo.mp4' },
@@ -131,6 +144,8 @@ const rawClientProjects = [
     client: '@congustocolombia',
     title: 'Reels | @congustocolombia',
     description: 'Edición de video y generación de IA.',
+    country: 'COL',
+    workType: 'Agencia',
         media: [
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1770271984/AQONLbNHb9E53eyTNL15n7eFN6NfB6TnhaBXT0nQu56a5f59Y0NF7AYLIiG3e64_Vq_kpNKfrASu3AYN96sBpWNvfxIVWo4__izjkgi.mp4' },
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1770271974/AQM4C1NG9RATtmtaquWwBDtII-cNABjiRQDUUpYQUILUEHMOb8zTOviZJ4graNxV2-L22G1RVZkLQwGidKnG7wmC._b5wy2p.mp4' },
@@ -143,6 +158,8 @@ const rawClientProjects = [
     client: '@distrireina',
     title: 'Reels | @distrireina',
     description: 'Filmación, edición de video y generación de IA.',
+    country: 'COL',
+    workType: 'Agencia',
         media: [
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1770270239/El_amor_y_la_amistad_no_se_viven_de_una_sola_manera_Hay_noches_que_piden_la_intensidad_de_un_cgrulx.mp4' },
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1770270233/%EF%B8%8F_Con_tanto_viento_uno_cree_que_el_sol_se_olvid%C3%B3_de_salir_pero_cuando_aparece_hay_que_apro_twwizw.mp4' },
@@ -162,6 +179,8 @@ const rawClientProjects = [
     client: '@vanalestudio',
     title: 'Reels | @vanalestudio',
     description: 'Filmación, edición de video y generación de IA.',
+    country: 'COL',
+    workType: 'Agencia',
         media: [
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1770272276/AQOv4jQDG6GICGzOE99SoqL_MYqIQsMsBWkkvWfJJ1OF0Be_fRWTPYh0YFiNa-oov28PcNd5zEtLYBRVvKeOZIXdpvSc4LQl_eazra8.mp4' },
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1770272283/AQNQqYngrX41IIpP6ZRlj7pso006u1fN4vkVQuYEVoTcNQ4BjhJ_FqvNIv2A_EcQxZeeUyT2y9c6xf_1Mc1MsrcnTaRFeF4R_kmqa0p.mp4' },
@@ -175,6 +194,8 @@ const rawClientProjects = [
     client: '@redbudassociates',
     title: 'Reels | @redbudassociates',
     description: 'Edición de video.',
+    country: 'USA',
+    workType: 'Agencia',
         media: [
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1770272275/Holiday_movies_say_a_lot_about_us_the_humor_we_love_the_comfort_we_return_to_and_the_stories_izbkbg.mp4' },
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1770272283/Behind_every_strong_team_there_are_traditions_memories_and_the_little_moments_that_made_us_wh_sfladb.mp4' }
@@ -186,6 +207,8 @@ const rawClientProjects = [
     client: '@kimeraventures',
     title: 'Reels | @kimeraventures',
     description: 'Edición de video.',
+    country: 'USA',
+    workType: 'Agencia',
         media: [
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1770272236/From_field_goals_to_grilled_goals_game_days_with_Kimera_hit_different.Because_winning_isn_t_just_nfyemk.mp4' },
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1770272228/Morning_grind_mid-day_hustle_and_ATL_nights_you_ll_never_forget.At_Kimera_the_energy_never_dro_b81zqo.mp4' }
@@ -199,6 +222,8 @@ const rawClientProjects = [
     client: '@risalsas_oficial',
     title: 'Reels | @risalsas_oficial',
     description: 'Edición de video y generación de IA.',
+    country: 'COL',
+    workType: 'Agencia',
     media: [
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1770266126/Quieres_una_salsa_ranch_diferente_y_deliciosa_para_tu_negocio_Aqu%C3%AD_va_una_versi%C3%B3n_con_un_toque_w1mppz.mp4', },
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1770266111/AQMDQ8jZqjGIqvw-_6Y4Eb752tEayU8gr-pE2ZIaQbQ8d7T5l0dOdTBsTHBe5F-ul_LkgN6f-C919-DlSQ4XBmpiM_YmunhF_doukum.mp4', },
@@ -219,6 +244,8 @@ const rawClientProjects = [
     client: '@calderos.restaurante',
     title: 'Fotografía de Productos ',
     description: 'fotografia y edicion.',
+    country: 'COL',
+    workType: 'Agencia',
     media: [
       { type: 'image', url: '/assets/images/cal1.jpg' },
       { type: 'image', url: '/assets/images/cal2.jpg' },
@@ -233,6 +260,8 @@ const rawClientProjects = [
     client: '@lattecorazonmocoa',
     title: 'Fotografía de Productos ',
     description: 'fotografia y edicion.',
+    country: 'COL',
+    workType: 'Agencia',
     media: [
       { type: 'image', url: '/assets/images/la1.jpg' },
       
@@ -244,6 +273,8 @@ const rawClientProjects = [
     client: '@kaomacafebar',
     title: 'Fotografía de Productos ',
     description: 'fotografia y edición.',
+    country: 'COL',
+    workType: 'Agencia',
     media: [
       { type: 'image', url: '/assets/images/12x.jpg' },
       { type: 'image', url: '/assets/images/23x.jpg' },
@@ -257,6 +288,8 @@ const rawClientProjects = [
     client: '@elpadrino_liquors_drinks',
     title: 'Fotografia productos',
     description: 'fotografia y edición.',
+    country: 'COL',
+    workType: 'Agencia',
     media: [
       {type: 'image', url: '/assets/images/p1.jpg'},
       {type: 'image', url: '/assets/images/p2.jpg'},
@@ -270,6 +303,8 @@ const rawClientProjects = [
     client: '@nhomadardm',
     title: 'Fotografía de Productos ',
     description: 'fotografia y edición.',
+    country: 'COL',
+    workType: 'Agencia',
     media: [
       { type: 'image', url: '/assets/images/n1.jpg' },
       
@@ -282,6 +317,8 @@ const rawClientProjects = [
     client: '@rapiburger_01',
     title: 'Fotografía de Productos ',
     description: 'fotografia y edición.',
+    country: 'COL',
+    workType: 'Agencia',
    media: [
 
       { type: 'image', url: '/assets/images/rapi1 (1).jpg' },
@@ -294,6 +331,8 @@ const rawClientProjects = [
     client: '@candy_blackmoda',
     title: 'Fotografía productos',
     description: 'fotografia y edición.',
+    country: 'COL',
+    workType: 'Agencia',
     media: [
       {type: 'image', url: '/assets/images/candi1.jpg'},
       {type: 'image', url: '/assets/images/candi2.jpg'},
@@ -307,6 +346,7 @@ const rawClientProjects = [
     client: '@smtienda_makeup',
     title: 'Fotografía productos',
     description: 'fotografia y edición.',
+    country: 'COL',
     media: [
       {type: 'image', url: '/assets/images/sm3.jpg'},
       {type: 'image', url: '/assets/images/sm.jpg'},
@@ -320,6 +360,7 @@ const rawClientProjects = [
     client: '@emkasapasto',
     title: 'Fotografía de Eventos Especiales',
     description: 'fotografia y edición.',
+    country: 'COL',
     media: [
       { type: 'image', url: '/assets/images/emka (1).jpg' },
       { type: 'image', url: '/assets/images/emka (2).jpg' },
@@ -332,6 +373,8 @@ const rawClientProjects = [
     client: '@rapiburger_01',
     title: 'Fotografía de Eventos Especiales',
     description: 'fotografia y edición.',
+    country: 'COL',
+    workType: 'Agencia',
      media: [
       { type: 'image', url: '/assets/images/rapi (4).jpg' },
       { type: 'image', url: '/assets/images/rapi (5).jpg' },
@@ -344,6 +387,8 @@ const rawClientProjects = [
     client: '@nhomadardm',
     title: 'Fotografía de Eventos Especiales',
     description: 'fotografia y edición.',
+    country: 'COL',
+    workType: 'Agencia',
     media: [
       { type: 'image', url: '/assets/images/nm1.webp' },
       { type: 'image', url: '/assets/images/ng.webp' },
@@ -359,6 +404,7 @@ const rawClientProjects = [
     client: '@anabelenstudiobeauty',
     title: 'Edicion fotograficaa',
     description: 'Edición.',
+    country: 'COL',
     media: [
       { type: 'image', url: '/assets/images/ana (1).jpg' },
       { type: 'image', url: '/assets/images/ana (2).jpg' },
@@ -371,6 +417,7 @@ const rawClientProjects = [
     client: '@Matefacil',
     title: 'Reels',
     description: 'Filmación y edición de video.',
+    country: 'COL',
     media: [
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1751235533/finall_jkwqre.mp4' },
       
@@ -384,6 +431,7 @@ const rawClientProjects = [
     client: '@emkasapasto',
     title: 'Reels',
     description: 'Filmación y edición de video.',
+    country: 'COL',
     media: [
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1751235357/finallllll_i2crce.mp4' },
       
@@ -394,6 +442,8 @@ const rawClientProjects = [
     client: '@rapiburger_01',
     title: 'Reels',
     description: 'Filmación y edición de video.',
+    country: 'COL',
+    workType: 'Agencia',
     media: [
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1751242017/rapiiis_uopwr0.mp4' },
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1751236696/AQOyqMQbshgxdvzVXW0peUBu_ZTuThIvUYB3WbsPIddIMLGHZ3RwEZHvxB96v-ztc7VyZ3VKe8KSUnwWsn3dqlYIc9gj1R9PfSgV93c._bxwmqa.mp4' },
@@ -407,6 +457,8 @@ const rawClientProjects = [
     client: '@nhomadardm',
     title: 'Reels',
     description: 'Filmación y edición de video.',
+    country: 'COL',
+    workType: 'Agencia',
     media: [
       { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1751252858/V%C3%ADdeo_sin_t%C3%ADtulo_Hecho_con_Clipchamp_1_jfxgqc.mp4' },
       
@@ -416,6 +468,8 @@ const rawClientProjects = [
   {
     client: '@rapiburger_01',
     title: 'Diseño Grafico para Redes Sociales',
+    country: 'COL',
+    workType: 'Agencia',
     
     media: [
       {type: 'image', url: '/assets/images/rapi 8.jpg'},
@@ -430,7 +484,7 @@ const rawClientProjects = [
       {
     client: '@Matefacil',
     title: 'Diseño grafico para Redes Sociales',
-    
+    country: 'COL',
     media: [
       { type: 'image', url: '/assets/images/m1.jpg' },
       

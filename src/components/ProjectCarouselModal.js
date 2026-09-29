@@ -110,13 +110,13 @@ const ProjectCarouselModal = ({ media, title, projectInfo, onClose }) => {
             <span
               className={`inline-block px-3 py-1 rounded-full text-sm font-medium mb-4 ${
                 projectInfo.workType === 'Agencia'
-                  ? 'bg-blue-100 text-blue-700'
-                  : 'bg-green-100 text-green-700'
+                  ? 'bg-green-100 text-green-700'
+                  : 'bg-blue-100 text-blue-700'
               }`}
             >
               {projectInfo.workType === 'Agencia'
-                ? 'Proyecto de agencia'
-                : 'Proyecto personal'}
+                ? 'Realizado en agencia'
+                : 'Realizado de forma independiente'}
             </span>
             {projectInfo.description && (
               <p className="text-gray-700 text-sm leading-relaxed">

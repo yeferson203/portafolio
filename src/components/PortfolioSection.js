@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { FaInstagram } from 'react-icons/fa';
 import { clientProjects } from '../mock/clientProjects';
 import ProjectCarouselModal from './ProjectCarouselModal';
+import Flag from 'react-world-flags';
 
 const PortfolioSection = () => {
   const [selectedClient, setSelectedClient] = useState(null);
@@ -38,16 +39,22 @@ const PortfolioSection = () => {
     (project) => selectedClient === null || project.client === selectedClient
   );
 
-  const buildBrandNarrative = (project) => {
-    const isAgency = project.workType === 'Agencia';
-    const detail = project.description
-      ? project.description.charAt(0).toLowerCase() + project.description.slice(1)
-      : 'contenido audiovisual para la marca.';
+const buildBrandNarrative = (project) => {
+  // 🔑 Si el proyecto trae una narrativa personalizada, se devuelve tal cual
+  if (project.customNarrative) {
+    return project.customNarrative;
+  }
 
-    return isAgency
-      ? `Este proyecto para ${project.client} fue desarrollado durante mi experiencia en una agencia creativa, donde participé en ${detail}`
-      : `Este proyecto para ${project.client} fue desarrollado de forma personal e independiente, sin intermediación de una agencia, enfocado en ${detail}`;
-  };
+  // 👇 Si no, se usa la lógica automática de siempre
+  const isAgency = project.workType === 'Agencia';
+  const detail = project.description
+    ? project.description.charAt(0).toLowerCase() + project.description.slice(1)
+    : 'contenido audiovisual para la marca.';
+
+  return isAgency
+    ? `Este proyecto para ${project.client} fue desarrollado durante mi experiencia en una agencia creativa, donde participé en ${detail}`
+    : `Este proyecto para ${project.client} fue desarrollado de forma personal e independiente, sin intermediación de una agencia, enfocado en ${detail}`;
+};
 
   const renderTitleWithClient = (project) => {
     if (project.title.includes(project.client)) {
@@ -68,7 +75,7 @@ const PortfolioSection = () => {
   };
 
   return (
-    <section className="container mx-auto px-4 py-16 sm:py-24 bg-white rounded-2xl shadow-xl my-16 overflow-hidden">
+    <section className="w-full px-4 py-10 overflow-hidden">
       
       {/* Estilos CSS para la animación del carrusel */}
       <style>{`
@@ -125,24 +132,25 @@ const PortfolioSection = () => {
         }
       `}</style>
 
+      <div className="max-w-6xl mx-auto px-6 sm:px-12 py-14 sm:py-16 bg-white border border-gray-200 rounded-3xl shadow-sm">
       {selectedClient === null && (
         <>
-          <h2 className="text-4xl sm:text-5xl font-bold text-center text-gray-900 mb-12">
+          <h2 className="text-4xl font-bold text-center text-gray-900 mb-6">
             Marcas y proyectos audiovisuales 
           </h2>
-          <p className="text-center text-gray-600 text-lg mb-12">
+          <p className="max-w-3xl mx-auto text-center text-gray-600 text-lg leading-relaxed mb-10">
             He participado en la creación de contenido visual y audiovisual para {new Set(clientProjects.map(p => p.client)).size} cuentas de Instagram, trabajando tanto en proyectos independientes como en proyectos desarrollados durante mi experiencia en agencias creativas.
           </p>
         </>
       )}
 
-      <div className="flex flex-col items-center gap-6 mb-12">
+      <div className="flex flex-col items-center gap-6">
         
         {selectedClient === null ? (
           <>
             {!showAllBrands ? (
               // CARRUSEL AUTOMÁTICO
-              <div className="carrusel-container w-full max-w-5xl overflow-hidden relative py-4">
+              <div className="carrusel-container w-full max-w-4xl overflow-hidden relative py-2">
                 
                 {/* Degradados laterales para suavizar la entrada/salida */}
                 <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
@@ -153,12 +161,12 @@ const PortfolioSection = () => {
                   ⏸ Pausado
                 </div>
                 
-                <div className="flex gap-4 animate-scroll-brands w-max">
+                <div className="flex gap-3 animate-scroll-brands w-max">
                   {duplicatedClients.map((client, index) => (
                     <button
                       key={`${client}-${index}`}
                       onClick={() => setSelectedClient(client)}
-                      className="brand-button px-6 py-3 rounded-full text-lg font-medium bg-gray-100 text-gray-700 whitespace-nowrap flex-shrink-0"
+                      className="brand-button px-5 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-700 whitespace-nowrap flex-shrink-0"
                     >
                       {client}
                     </button>
@@ -182,7 +190,7 @@ const PortfolioSection = () => {
 
             <button
             onClick={() => setShowAllBrands(!showAllBrands)}
-            className="px-6 py-3 rounded-full text-lg font-medium 
+            className="px-6 py-2.5 rounded-full text-sm font-medium 
                       bg-white text-gray-900 border border-gray-300 
                       shadow-sm
                       transition-all duration-300 ease-in-out
@@ -220,7 +228,9 @@ const PortfolioSection = () => {
           </div>
         )}
       </div>
+      </div>
 
+      <div className="max-w-6xl mx-auto mt-10">
       {selectedClient === null ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project, index) => (
@@ -264,13 +274,13 @@ const PortfolioSection = () => {
 
               <div className="p-6">
                 <span
-                  className={`inline-block mb-2 px-3 py-1 rounded-full text-xs font-medium ${
-                    project.workType === 'Agencia'
-                      ? 'bg-blue-100 text-blue-700'
-                      : 'bg-green-100 text-green-700'
-                  }`}
-                >
-                  {project.workType === 'Agencia' ? 'Agencia' : 'Personal'}
+                className={`inline-block mb-2 px-3 py-1 rounded-full text-xs font-medium ${
+                  project.workType === 'Agencia'
+                    ? 'bg-green-100 text-green-700'  // ✅ Agencia = verde
+                    : 'bg-blue-100 text-blue-700'    // ✅ Personal = azul
+                }`}
+              >
+                {project.workType === 'Agencia' ? 'Agencia' : 'Personal'}
                 </span>
                 <h3 className="text-2xl font-semibold text-gray-900 mb-2">
                   {project.title}
@@ -278,7 +288,14 @@ const PortfolioSection = () => {
                 <p className="text-gray-600 text-base mb-4 flex items-center gap-2">
                   <span className="font-medium text-black flex items-center gap-1">
                     <FaInstagram className="text-pink-600" />
-                    {project.client}
+                    {project.client}  
+                    {project.country && (
+                      <Flag
+                        code={project.country}
+                        style={{ width: '18px', height: '13px', borderRadius: '2px', display: 'inline-block' }}
+                        title="País de la marca"
+                      />
+                    )}
                   </span>
                 </p>
                 <p className="text-gray-700 text-sm leading-relaxed">
@@ -345,6 +362,13 @@ const PortfolioSection = () => {
                     <span className="font-medium text-black flex items-center gap-1">
                       <FaInstagram className="text-pink-600" />
                       {project.client}
+                      {project.country && (
+                        <Flag
+                          code={project.country}
+                          style={{ width: '18px', height: '13px', borderRadius: '2px', display: 'inline-block' }}
+                          title="País de la marca"
+                        />
+                      )}
                     </span>
                   </p>
                   <p className="text-gray-700 text-sm leading-relaxed">
@@ -360,11 +384,11 @@ const PortfolioSection = () => {
                 <span
                   className={`inline-block w-fit mb-4 px-3 py-1 rounded-full text-sm font-medium ${
                     project.workType === 'Agencia'
-                      ? 'bg-blue-100 text-blue-700'
-                      : 'bg-green-100 text-green-700'
+                    ? 'bg-green-100 text-green-700'  // ✅ Agencia = verde
+                    : 'bg-blue-100 text-blue-700'    // ✅ Personal = azul
                   }`}
                 >
-                  {project.workType === 'Agencia' ? 'Proyecto de agencia' : 'Proyecto personal'}
+                  {project.workType === 'Agencia' ? 'Realizado en agencia' : 'Realizado de forma independiente'}
                 </span>
                 <p className="text-gray-700 leading-relaxed">
                   {buildBrandNarrative(project)}
@@ -374,6 +398,7 @@ const PortfolioSection = () => {
           ))}
         </div>
       )}
+      </div>
 
       {isModalOpen && (
         <ProjectCarouselModal
