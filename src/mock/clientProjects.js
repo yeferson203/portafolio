@@ -114,14 +114,43 @@ const rawClientProjects = [
       
     ],
 
-  
-    
+
   },
-  {   
-    client: '@margiestetic',
-    title: 'Reels | @margiestetic',
-    description: 'Filmación y edición de video.',
+
+  {
+    client: '@drogueriasestelar',
+    title: 'Reels | @drogueriasestelar',  
+    description: 'Filmación, edición de video y generacion con IA.',
     country: 'COL',
+    customNarrative: 'Droguerías Estelar, cadena de farmacias reconocida en Pasto-Colombia, fue un proyecto en el que participé en la filmación, edición y generación de contenido audiovisual mediante inteligencia artificial, contribuyendo a comunicar visualmente sus productos y servicios en redes sociales.',
+    workType: 'Agencia',
+    media: [
+      { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1790792538/1_12_n3ih9a.mp4' },
+      { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1790792536/1_11_emyhgm.mp4' },
+      { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1790792522/1_3_mmreee.mp4' },
+      { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1790792498/1_4_zh2yfc.mp4' },
+      { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1790792510/1_5_dg3gty.mp4' },
+      { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1790792511/1_6_rhtksm.mp4' },
+      { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1790792514/1_9_gfqu8d.mp4' },
+      { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1790792525/1_1_kfltzw.mp4' },
+      { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1790792526/1_7_ldaarw.mp4' },
+      { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1790792535/1_2_ur0apv.mp4' },
+      { type: 'video', url: 'https://res.cloudinary.com/da9zbh8zo/video/upload/v1790792526/1_10_ciwgnm.mp4' },
+
+
+     
+      
+    ],
+
+
+  },
+
+  {
+     client: '@margiestetic',
+    title: 'Reels | @margiestetic',  
+    description: '  Edición de video y generacion con IA.',
+    country: 'COL',
+  
     customNarrative: 'Margie Stetic, clínica especializada en tratamientos estéticos y cuidado de la piel, fue un proyecto en el que participé en la filmación y edición de contenido audiovisual, contribuyendo a comunicar visualmente sus servicios y protocolos profesionales en redes sociales.',
     workType: 'Agencia',
         media: [
