@@ -4,6 +4,8 @@ import { clientProjects } from '../mock/clientProjects';
 import ProjectCarouselModal from './ProjectCarouselModal';
 import Flag from 'react-world-flags';
 
+const defaultAgencyLogo = 'https://res.cloudinary.com/da9zbh8zo/image/upload/v1790741510/BLANCOMesa_de_trabajo_11_3x_dhkpuh.avif';
+
 const PortfolioVideoPreview = ({ src, className }) => {
   const videoRef = React.useRef(null);
   const [shouldLoad, setShouldLoad] = useState(false);
@@ -378,6 +380,15 @@ const buildBrandNarrative = (project) => {
                     <span className={`inline-flex w-fit rounded-full border px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] ${project.workType === 'Agencia' ? 'border-emerald-300/25 bg-emerald-300/10 text-emerald-200' : 'border-blue-300/25 bg-blue-300/10 text-blue-200'}`}>
                       {project.workType === 'Agencia' ? 'Realizado en agencia' : 'Realizado de forma independiente'}
                     </span>
+                    {project.workType === 'Agencia' && (
+                      <span className="flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-full border border-white/20 bg-black p-1 shadow-sm">
+                        <img
+                          src={project.agencyLogo || defaultAgencyLogo}
+                          alt="Logo de la agencia"
+                          className="h-full w-full object-contain"
+                        />
+                      </span>
+                    )}
                     {project.country && (
                       <Flag
                         code={project.country}
