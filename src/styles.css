@@ -1,6 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Manrope', sans-serif;
+  }
+}
+
+.hero-grid {
+  background-color: #f4f6f8;
+  background-image: linear-gradient(rgba(15, 23, 42, 0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(15, 23, 42, 0.035) 1px, transparent 1px);
+  background-size: 42px 42px;
+}
 
 @layer utilities {
   @keyframes fade-in {
@@ -15,7 +29,104 @@
   }
 
   .animate-fade-in {
-    animation: fade-in 1s ease-out forwards;
+    animation: fade-in 1s ease-out both;
+  }
+
+  .fade-in-pending {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  @keyframes slide-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(36px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-slide-in-right {
+    animation: slide-in-right 700ms ease-out both;
+  }
+
+  .slide-in-right-pending {
+    opacity: 0;
+    transform: translateX(36px);
+  }
+
+  @keyframes services-copy-in {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .services-copy-enter {
+    animation: services-copy-in 650ms ease-out both;
+  }
+
+  .services-copy-pending {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  @keyframes services-card-in {
+    from {
+      opacity: 0;
+      filter: blur(3px);
+      transform: translateY(26px) scale(0.97);
+    }
+    to {
+      opacity: 1;
+      filter: blur(0);
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .services-card-enter {
+    animation: services-card-in 750ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+  }
+
+  .services-card-pending {
+    opacity: 0;
+    filter: blur(3px);
+    transform: translateY(26px) scale(0.97);
+  }
+
+  @keyframes reduced-fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-fade-in,
+    .animate-slide-in-right,
+    .services-copy-enter,
+    .services-card-enter {
+      animation: reduced-fade-in 220ms ease-out both;
+      transform: none;
+      filter: none;
+    }
+
+    .fade-in-pending,
+    .slide-in-right-pending,
+    .services-copy-pending,
+    .services-card-pending {
+      opacity: 0;
+      transform: none;
+      filter: none;
+    }
   }
 
   @keyframes float {

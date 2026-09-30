@@ -12,20 +12,26 @@ const LayoutHeader = ({ currentPage, setCurrentPage }) => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 bg-white bg-opacity-90 backdrop-blur-md z-50 shadow-sm">
-      <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <div className="text-2xl font-bold text-gray-900">YEFF</div>
+    <header className="fixed left-0 right-0 top-0 z-50 border-b border-gray-200/80 bg-white/85 shadow-sm backdrop-blur-xl">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
+        <button
+          onClick={() => setCurrentPage('home')}
+          className="flex items-center gap-2 text-xl font-extrabold tracking-tight text-gray-950"
+        >
+          <span className="h-2.5 w-2.5 rounded-full bg-blue-600" />
+          YEFF
+        </button>
 
         {/* Menú en pantallas grandes */}
-        <ul className="hidden md:flex space-x-8">
+        <ul className="hidden items-center gap-1 md:flex">
           {navItems.map((item) => (
             <li key={item.page}>
               <button
                 onClick={() => setCurrentPage(item.page)}
-                className={`text-lg font-medium transition-colors ${
+                className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
                   currentPage === item.page
-                    ? 'text-black border-b-2 border-black'
-                    : 'text-gray-600 hover:text-gray-900'
+                    ? 'bg-gray-950 text-white shadow-sm'
+                    : 'text-gray-600 hover:bg-gray-100 hover:text-gray-950'
                 }`}
               >
                 {item.name}
@@ -36,7 +42,7 @@ const LayoutHeader = ({ currentPage, setCurrentPage }) => {
 
         {/* Botón hamburguesa en móvil */}
         <div className="md:hidden">
-          <button onClick={() => setIsOpen(!isOpen)} className="text-gray-600 hover:text-gray-900">
+          <button onClick={() => setIsOpen(!isOpen)} className="rounded-full p-2 text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900" aria-label="Abrir menú">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {isOpen ? (
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />

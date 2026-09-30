@@ -1,8 +1,55 @@
 import React, { useState, useMemo } from 'react';
-import { FaInstagram } from 'react-icons/fa';
+import { FaImages, FaInstagram } from 'react-icons/fa';
 import { clientProjects } from '../mock/clientProjects';
 import ProjectCarouselModal from './ProjectCarouselModal';
 import Flag from 'react-world-flags';
+
+const PortfolioVideoPreview = ({ src, className }) => {
+  const videoRef = React.useRef(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  React.useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return undefined;
+
+    if (!('IntersectionObserver' in window)) {
+      setShouldLoad(true);
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setShouldLoad(true);
+        observer.disconnect();
+      }
+    }, { rootMargin: '420px 0px' });
+
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
+
+  const seekToPreviewFrame = (event) => {
+    try {
+      event.currentTarget.currentTime = 1;
+    } catch (error) {
+      console.warn('Error setting video preview frame:', error);
+    }
+  };
+
+  return (
+    <video
+      ref={videoRef}
+      src={shouldLoad ? src : undefined}
+      className={className}
+      muted
+      loop
+      playsInline
+      preload={shouldLoad ? 'metadata' : 'none'}
+      controls={false}
+      onLoadedMetadata={seekToPreviewFrame}
+    />
+  );
+};
 
 const PortfolioSection = () => {
   const [selectedClient, setSelectedClient] = useState(null);
@@ -18,11 +65,18 @@ const PortfolioSection = () => {
   const duplicatedClients = useMemo(() => [...uniqueClients, ...uniqueClients], [uniqueClients]);
 
   const openCarousel = (project) => {
+    const customNarrative = project.customNarrative || '';
+    const narrativeCutoff = customNarrative.search(/,\s*(?:fue un proyecto|participé en)/i);
+
     setCurrentProjectMedia(project.media);
     setCurrentProjectTitle(project.title);
     setCurrentProjectInfo({
       client: project.client,
-      description: project.description,
+      country: project.country,
+      agencyLogo: project.agencyLogo,
+      brandDescription: narrativeCutoff === -1
+        ? customNarrative.trim()
+        : customNarrative.slice(0, narrativeCutoff).trim(),
       workType: project.workType,
     });
     setIsModalOpen(true);
@@ -75,9 +129,7 @@ const buildBrandNarrative = (project) => {
   };
 
   return (
-    <section className="w-full px-4 py-10 overflow-hidden">
-      
-      {/* Estilos CSS para la animación del carrusel */}
+    <section className="mx-auto max-w-7xl px-6 py-16 font-[Manrope] sm:py-24 lg:px-10">
       <style>{`
         @keyframes scrollBrands {
           0% {
@@ -90,39 +142,21 @@ const buildBrandNarrative = (project) => {
         .animate-scroll-brands {
           animation: scrollBrands 30s linear infinite;
         }
-        /* Pausa el carrusel al pasar el mouse sobre cualquier parte del contenedor */
         .carrusel-container:hover .animate-scroll-brands {
           animation-play-state: paused;
         }
-        /* Efecto de agrandado y cambio de color en la marca individual al hacer hover */
         .brand-button {
           transition: all 0.3s ease;
           cursor: pointer;
         }
         .brand-button:hover {
-          transform: scale(1.15);
-          background-color: #000 !important;
+          transform: translateY(-1px) scale(1.04);
+          background-color: #0f172a !important;
           color: #fff !important;
-          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+          box-shadow: 0 12px 28px rgba(15, 23, 42, 0.18);
           z-index: 20;
           position: relative;
         }
-        /* Muestra un pequeño tooltip al hacer hover 
-        .brand-button:hover::after {
-          content: 'Clic para filtrar';
-          position: absolute;
-          bottom: -28px;
-          left: 50%;
-          transform: translateX(-50%);
-          background-color: #1f2937;
-          color: #fff;
-          font-size: 11px;
-          padding: 3px 8px;
-          border-radius: 6px;
-          white-space: nowrap;
-          pointer-events: none;
-          opacity: 0.95;
-        }*/
         .no-scrollbar::-webkit-scrollbar {
           display: none;
         }
@@ -130,59 +164,71 @@ const buildBrandNarrative = (project) => {
           -ms-overflow-style: none;
           scrollbar-width: none;
         }
+        @keyframes portfolioTextReveal {
+          from {
+            clip-path: inset(0 100% 0 0);
+            opacity: 0.35;
+          }
+          to {
+            clip-path: inset(0 0 0 0);
+            opacity: 1;
+          }
+        }
+        .portfolio-text-reveal {
+          animation: portfolioTextReveal 850ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .portfolio-text-reveal {
+            animation: none;
+            clip-path: none;
+            opacity: 1;
+          }
+        }
       `}</style>
 
-      <div className="max-w-6xl mx-auto px-6 sm:px-12 py-14 sm:py-16 bg-white border border-gray-200 rounded-3xl shadow-sm">
+      <div className="relative mb-12">
       {selectedClient === null && (
-        <>
-          <h2 className="text-4xl font-bold text-center text-gray-900 mb-6">
-            Marcas y proyectos audiovisuales 
-          </h2>
-          <p className="max-w-3xl mx-auto text-center text-gray-600 text-lg leading-relaxed mb-10">
-            He participado en la creación de contenido visual y audiovisual para {new Set(clientProjects.map(p => p.client)).size} cuentas de Instagram, trabajando tanto en proyectos independientes como en proyectos desarrollados durante mi experiencia en agencias creativas.
+        <div className="mb-10 grid gap-6 border-b border-gray-200 pb-10 text-left lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:gap-12">
+         
+          <h1 className="portfolio-text-reveal max-w-2xl text-4xl font-extrabold leading-tight text-gray-950 sm:text-5xl lg:text-6xl" style={{ animationDelay: '80ms' }}>
+            Marcas y proyectos con <span className="text-blue-600">impacto visual</span>
+          </h1>
+          <p className="portfolio-text-reveal mt-2 max-w-2xl text-base leading-relaxed text-gray-600 sm:text-lg lg:ml-auto" style={{ animationDelay: '220ms' }}>
+            He participado en la creación de contenido visual y audiovisual para {new Set(clientProjects.map(p => p.client)).size} marcas, combinando estrategia, creatividad y ejecución para dar vida a historias memorables.
           </p>
-        </>
+        </div>
       )}
 
-      <div className="flex flex-col items-center gap-6">
+      <div className="flex flex-col items-start gap-6">
         
         {selectedClient === null ? (
           <>
             {!showAllBrands ? (
-              // CARRUSEL AUTOMÁTICO
-              <div className="carrusel-container w-full max-w-4xl overflow-hidden relative py-2">
-                
-                {/* Degradados laterales para suavizar la entrada/salida */}
-                <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
-                <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
-                
-                {/* Indicador visual: texto que aparece solo al hacer hover sobre el carrusel */}
-                <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 text-xs text-gray-400 opacity-0 transition-opacity duration-300 pointer-events-none z-20 carrusel-hint">
-                  ⏸ Pausado
-                </div>
-                
+              <div className="carrusel-container relative left-1/2 w-screen max-w-none -translate-x-1/2 overflow-hidden py-2">
+                <div className="pointer-events-none absolute bottom-0 left-0 top-0 z-10 w-16 bg-gradient-to-r from-[#f4f6f8] to-transparent sm:w-24"></div>
+                <div className="pointer-events-none absolute bottom-0 right-0 top-0 z-10 w-16 bg-gradient-to-l from-[#f4f6f8] to-transparent sm:w-24"></div>
+
                 <div className="flex gap-3 animate-scroll-brands w-max">
                   {duplicatedClients.map((client, index) => (
                     <button
                       key={`${client}-${index}`}
                       onClick={() => setSelectedClient(client)}
-                      className="brand-button px-5 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-700 whitespace-nowrap flex-shrink-0"
+                      className="brand-button whitespace-nowrap rounded-full border border-gray-200 bg-gray-100 px-5 py-2.5 text-sm font-semibold text-gray-700 shadow-sm"
                     >
-                      {client}
+                      <span className="portfolio-text-reveal inline-block" style={{ animationDelay: `${Math.min(index * 20, 360)}ms` }}>{client}</span>
                     </button>
                   ))}
                 </div>
               </div>
             ) : (
-              // TODAS LAS MARCAS EN GRID ESTÁTICO
-              <div className="flex flex-wrap justify-center gap-4 max-w-5xl">
-                {uniqueClients.map((client) => (
+              <div className="relative left-1/2 flex w-screen max-w-none -translate-x-1/2 flex-wrap justify-center gap-3 px-6 sm:px-10 lg:px-16">
+                {uniqueClients.map((client, index) => (
                   <button
                     key={client}
                     onClick={() => setSelectedClient(client)}
-                    className="px-6 py-3 rounded-full text-lg font-medium transition-all duration-300 bg-gray-100 text-gray-700 hover:bg-black hover:text-white hover:scale-110 hover:shadow-lg"
+                    className="rounded-full border border-gray-200 bg-gray-100 px-5 py-2.5 text-sm font-semibold text-gray-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-gray-900 hover:bg-gray-900 hover:text-white hover:shadow-lg"
                   >
-                    {client}
+                    <span className="portfolio-text-reveal inline-block" style={{ animationDelay: `${Math.min(index * 25, 400)}ms` }}>{client}</span>
                   </button>
                 ))}
               </div>
@@ -190,17 +236,11 @@ const buildBrandNarrative = (project) => {
 
             <button
             onClick={() => setShowAllBrands(!showAllBrands)}
-            className="px-6 py-2.5 rounded-full text-sm font-medium 
-                      bg-white text-gray-900 border border-gray-300 
-                      shadow-sm
-                      transition-all duration-300 ease-in-out
-                      hover:bg-black hover:text-white hover:scale-110 
-                      hover:shadow-xl hover:border-black
-                      flex items-center gap-2"
+            className="inline-flex items-center gap-2 self-center rounded-full border border-gray-300 bg-white px-6 py-2.5 text-sm font-semibold text-gray-900 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-gray-900 hover:bg-gray-900 hover:text-white hover:shadow-lg"
           >
-            {showAllBrands ? 'Ver menos' : 'Ver todas las marcas'}
+            <span className="portfolio-text-reveal inline-block">{showAllBrands ? 'Ver menos' : 'Ver todas las marcas'}</span>
             <svg 
-              className={`w-4 h-4 transition-transform duration-300 ${showAllBrands ? 'rotate-180' : ''}`} 
+              className={`h-4 w-4 transition-transform duration-300 ${showAllBrands ? 'rotate-180' : ''}`} 
               fill="none" 
               stroke="currentColor" 
               viewBox="0 0 24 24"
@@ -210,18 +250,19 @@ const buildBrandNarrative = (project) => {
           </button>
           </>
         ) : (
-          <div className="flex flex-wrap justify-center gap-4">
-            <button
-              className="px-6 py-3 rounded-full text-lg font-medium transition-all duration-300 bg-black text-white shadow-md cursor-default"
-            >
-              {selectedClient}
-            </button>
+          <div className="flex w-full items-end justify-between gap-6 border-b border-gray-200 pb-6">
+            <div className="min-w-0">
+              <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.2em] text-blue-600">Marca seleccionada</p>
+              <h2 className="portfolio-text-reveal break-words text-3xl font-extrabold leading-tight text-gray-950 sm:text-4xl">
+                {selectedClient}
+              </h2>
+            </div>
             <button
               onClick={handleResetFilter}
-              className="px-6 py-3 rounded-full text-lg font-medium transition-all duration-300 bg-gray-100 text-gray-700 hover:bg-gray-200 flex items-center gap-2"
+              className="inline-flex shrink-0 items-center gap-2 rounded-full border border-gray-300 bg-white px-5 py-3 text-sm font-semibold text-gray-800 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-gray-950 hover:bg-gray-950 hover:text-white hover:shadow-lg"
             >
-              Ver más
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <span className="portfolio-text-reveal inline-block">Ver más</span>
+              <svg className="h-4 w-4 rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
               </svg>
             </button>
@@ -230,171 +271,137 @@ const buildBrandNarrative = (project) => {
       </div>
       </div>
 
-      <div className="max-w-6xl mx-auto mt-10">
+      <div className="mx-auto mt-10 max-w-7xl">
       {selectedClient === null ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 xl:grid-cols-3">
           {filteredProjects.map((project, index) => (
-            <div
-              key={index}
-              title="Haz clic para ver el carrusel"
-              aria-label="Haz clic para ver el carrusel"
-              className="group relative bg-gray-50 rounded-2xl shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 cursor-pointer"
-              onClick={() => openCarousel(project)}
-            >
-              <div className="relative w-full h-64 sm:h-72 md:h-80 lg:h-64 overflow-hidden">
+              <div
+                key={index}
+                title="Haz clic para ver el carrusel"
+                aria-label="Haz clic para ver el carrusel"
+                className="group relative aspect-[4/5] min-h-[340px] cursor-pointer overflow-hidden rounded-[1.75rem] border border-slate-200/70 bg-slate-900 shadow-[0_20px_48px_-24px_rgba(15,23,42,0.5)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_32px_70px_-28px_rgba(15,23,42,0.55)]"
+                onClick={() => openCarousel(project)}
+              >
+              <div className="absolute inset-0">
                 {project.media[0].type === 'image' ? (
                   <img
                     src={project.media[0].url}
                     alt={project.title}
-                    className="w-full h-full object-cover"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
+                    decoding="async"
                   />
                 ) : (
-                  <video
+                  <PortfolioVideoPreview
                     src={project.media[0].url}
-                    className="w-full h-full object-cover"
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    controls={false}
-                    onLoadedMetadata={(e) => {
-                      try {
-                        e.target.currentTime = 1;
-                      } catch (err) {
-                        console.warn('Error setting video preview frame:', err);
-                      }
-                    }}
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 )}
-
-                <div className="absolute inset-0 backdrop-blur-sm bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <span className="text-white text-sm font-medium">Haz clic para ver más</span>
-                </div>
               </div>
 
-              <div className="p-6">
-                <span
-                className={`inline-block mb-2 px-3 py-1 rounded-full text-xs font-medium ${
-                  project.workType === 'Agencia'
-                    ? 'bg-green-100 text-green-700'  // ✅ Agencia = verde
-                    : 'bg-blue-100 text-blue-700'    // ✅ Personal = azul
-                }`}
-              >
-                {project.workType === 'Agencia' ? 'Agencia' : 'Personal'}
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/45 to-slate-950/5 transition-opacity duration-500 group-hover:from-slate-950/90" />
+
+              <div className="absolute inset-x-0 top-0 flex items-start justify-between gap-3 p-5">
+                <span className="rounded-full border border-white/30 bg-slate-950/35 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-md">
+                  <span className="portfolio-text-reveal inline-block" style={{ animationDelay: `${Math.min(index * 60, 420)}ms` }}>{project.workType === 'Agencia' ? 'En Agencia' : 'Personal'}</span>
                 </span>
-                <h3 className="text-2xl font-semibold text-gray-900 mb-2">
+                {project.country && (
+                  <Flag
+                    code={project.country}
+                    style={{ width: '22px', height: '16px', borderRadius: '3px', display: 'inline-block', boxShadow: '0 2px 8px rgba(0,0,0,0.25)' }}
+                    title="País de la marca"
+                  />
+                )}
+              </div>
+
+              <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
+                <h3 className="portfolio-text-reveal mb-3 text-xl font-extrabold leading-tight text-white sm:text-2xl" style={{ animationDelay: `${Math.min(index * 60 + 100, 520)}ms` }}>
                   {project.title}
                 </h3>
-                <p className="text-gray-600 text-base mb-4 flex items-center gap-2">
-                  <span className="font-medium text-black flex items-center gap-1">
-                    <FaInstagram className="text-pink-600" />
-                    {project.client}  
-                    {project.country && (
-                      <Flag
-                        code={project.country}
-                        style={{ width: '18px', height: '13px', borderRadius: '2px', display: 'inline-block' }}
-                        title="País de la marca"
-                      />
-                    )}
-                  </span>
+                <p className="mb-3 flex items-center gap-2 text-sm font-semibold text-white/85">
+                  <FaInstagram className="shrink-0 text-pink-300" />
+                  <span className="portfolio-text-reveal inline-block" style={{ animationDelay: `${Math.min(index * 60 + 180, 600)}ms` }}>{project.client}</span>
                 </p>
-                <p className="text-gray-700 text-sm leading-relaxed">
+                <p className="portfolio-text-reveal line-clamp-3 text-sm leading-relaxed text-white/75" style={{ animationDelay: `${Math.min(index * 60 + 260, 680)}ms` }}>
                   {project.description}
                 </p>
 
-                <p className="mt-4 text-sm text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-1">
-                  <svg className="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" strokeWidth="2"
-                    viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-                  </svg>
-                  Ver galería
-                </p>
+                <div className="mt-4 flex items-center border-t border-white/20 pt-4">
+                  <span className="inline-flex items-center gap-2 rounded-full border border-white/50 bg-white/90 px-4 py-2 text-xs font-bold text-slate-900 shadow-lg shadow-slate-950/20 transition-colors duration-300 group-hover:border-blue-300 group-hover:bg-blue-600 group-hover:text-white">
+                    <FaImages className="h-4 w-4 text-blue-600 transition-colors group-hover:text-white" />
+                    Ver galería
+                  </span>
+                </div>
               </div>
-            </div>
+              </div>
           ))}
         </div>
       ) : (
         <div className="space-y-10">
           {filteredProjects.map((project, index) => (
-            <div key={index} className="flex flex-col md:flex-row gap-8 items-stretch">
+            <article key={index} className="grid overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-[0_28px_75px_-38px_rgba(15,23,42,0.5)] lg:grid-cols-[1.08fr_0.92fr]">
               <div
                 title="Haz clic para ver el carrusel"
                 aria-label="Haz clic para ver el carrusel"
-                className="group relative w-full md:w-1/2 bg-gray-50 rounded-2xl shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 cursor-pointer"
+                className="group relative min-h-[320px] cursor-pointer overflow-hidden bg-slate-950 sm:min-h-[430px]"
                 onClick={() => openCarousel(project)}
               >
-                <div className="relative w-full h-64 sm:h-72 md:h-80 overflow-hidden">
+                <div className="absolute inset-0">
                   {project.media[0].type === 'image' ? (
                     <img
                       src={project.media[0].url}
                       alt={project.title}
-                      className="w-full h-full object-cover"
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      loading="lazy"
+                      decoding="async"
                     />
                   ) : (
-                    <video
+                    <PortfolioVideoPreview
                       src={project.media[0].url}
-                      className="w-full h-full object-cover"
-                      muted
-                      loop
-                      playsInline
-                      preload="metadata"
-                      controls={false}
-                      onLoadedMetadata={(e) => {
-                        try {
-                          e.target.currentTime = 1;
-                        } catch (err) {
-                          console.warn('Error setting video preview frame:', err);
-                        }
-                      }}
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                   )}
-
-                  <div className="absolute inset-0 backdrop-blur-sm bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <span className="text-white text-sm font-medium">Haz clic para ver más</span>
-                  </div>
                 </div>
 
-                <div className="p-6">
-                  <h3 className="text-2xl font-semibold text-gray-900 mb-2">
-                    {project.title}
-                  </h3>
-                  <p className="text-gray-600 text-base mb-4 flex items-center gap-2">
-                    <span className="font-medium text-black flex items-center gap-1">
-                      <FaInstagram className="text-pink-600" />
-                      {project.client}
-                      {project.country && (
-                        <Flag
-                          code={project.country}
-                          style={{ width: '18px', height: '13px', borderRadius: '2px', display: 'inline-block' }}
-                          title="País de la marca"
-                        />
-                      )}
-                    </span>
-                  </p>
-                  <p className="text-gray-700 text-sm leading-relaxed">
-                    {project.description}
-                  </p>
-                </div>
-              </div>
-
-              <div className="w-full md:w-1/2 bg-gray-50 rounded-2xl shadow-lg p-8 flex flex-col justify-center">
-                <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
-                  {renderTitleWithClient(project)}
-                </h3>
-                <span
-                  className={`inline-block w-fit mb-4 px-3 py-1 rounded-full text-sm font-medium ${
-                    project.workType === 'Agencia'
-                    ? 'bg-green-100 text-green-700'  // ✅ Agencia = verde
-                    : 'bg-blue-100 text-blue-700'    // ✅ Personal = azul
-                  }`}
-                >
-                  {project.workType === 'Agencia' ? 'Realizado en agencia' : 'Realizado de forma independiente'}
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-slate-950/10 to-transparent" />
+                <span className="absolute bottom-6 left-6 inline-flex items-center gap-2 rounded-full border border-white/60 bg-white/90 px-5 py-3 text-xs font-bold text-slate-900 shadow-xl backdrop-blur-md transition-colors duration-300 group-hover:border-blue-300 group-hover:bg-blue-600 group-hover:text-white">
+                  <FaImages className="h-4 w-4 text-blue-600 transition-colors group-hover:text-white" />
+                  Ver galería
                 </span>
-                <p className="text-gray-700 leading-relaxed">
-                  {buildBrandNarrative(project)}
-                </p>
               </div>
-            </div>
+
+              <div className="relative flex flex-col justify-center overflow-hidden bg-slate-950 p-7 text-white sm:p-10 lg:p-12">
+                <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-blue-500/20 blur-3xl" />
+                <div className="pointer-events-none absolute -bottom-20 -left-16 h-56 w-56 rounded-full bg-sky-500/10 blur-3xl" />
+                <div className="relative z-10">
+                  <div className="mb-7 flex flex-wrap items-center gap-3">
+                    <span className={`inline-flex w-fit rounded-full border px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] ${project.workType === 'Agencia' ? 'border-emerald-300/25 bg-emerald-300/10 text-emerald-200' : 'border-blue-300/25 bg-blue-300/10 text-blue-200'}`}>
+                      {project.workType === 'Agencia' ? 'Realizado en agencia' : 'Realizado de forma independiente'}
+                    </span>
+                    {project.country && (
+                      <Flag
+                        code={project.country}
+                        style={{ width: '22px', height: '16px', borderRadius: '3px', display: 'inline-block', boxShadow: '0 2px 8px rgba(0,0,0,0.25)' }}
+                        title="País de la marca"
+                      />
+                    )}
+                  </div>
+
+                  <h3 className="portfolio-text-reveal mb-5 text-3xl font-extrabold leading-tight text-white sm:text-4xl" style={{ animationDelay: `${Math.min(index * 80 + 100, 500)}ms` }}>
+                    {renderTitleWithClient(project)}
+                  </h3>
+
+                  <p className="mb-6 flex items-center gap-2 border-b border-white/15 pb-6 text-sm font-semibold text-slate-300">
+                    <FaInstagram className="shrink-0 text-pink-300" />
+                    <span className="portfolio-text-reveal inline-block" style={{ animationDelay: `${Math.min(index * 80 + 180, 580)}ms` }}>{project.client}</span>
+                  </p>
+
+                  <p className="portfolio-text-reveal text-base leading-relaxed text-slate-300" style={{ animationDelay: `${Math.min(index * 80 + 260, 660)}ms` }}>
+                    {buildBrandNarrative(project)}
+                  </p>
+                </div>
+              </div>
+            </article>
           ))}
         </div>
       )}

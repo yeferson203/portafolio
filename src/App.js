@@ -29,7 +29,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 font-sans antialiased">
+    <div className="min-h-screen bg-[#f4f6f8] font-sans antialiased text-gray-900">
       <LayoutHeader currentPage={currentPage} setCurrentPage={setCurrentPage} />
       <main className="pt-20">
         {renderPage()}
