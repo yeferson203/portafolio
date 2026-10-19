@@ -35,7 +35,7 @@ const AboutMeSection = () => {
     const animateCount = (timestamp) => {
       if (startTime === null) startTime = timestamp;
       const progress = Math.min((timestamp - startTime) / duration, 1);
-      setExperienceYears(Math.round(progress * 3));
+      setExperienceYears(Math.round(progress * 5));
 
       if (progress < 1) {
         frameId = requestAnimationFrame(animateCount);
