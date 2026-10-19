@@ -100,6 +100,72 @@
     transform: translateY(26px) scale(0.97);
   }
 
+  @keyframes contact-panel-left-in {
+    from {
+      opacity: 0;
+      filter: blur(4px);
+      transform: translate3d(-48px, 0, 0);
+    }
+    to {
+      opacity: 1;
+      filter: blur(0);
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes contact-panel-right-in {
+    from {
+      opacity: 0;
+      filter: blur(4px);
+      transform: translate3d(48px, 0, 0);
+    }
+    to {
+      opacity: 1;
+      filter: blur(0);
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  .contact-panel-left-enter {
+    animation: contact-panel-left-in 850ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+  }
+
+  .contact-panel-right-enter {
+    animation: contact-panel-right-in 850ms cubic-bezier(0.2, 0.75, 0.25, 1) 120ms both;
+  }
+
+  .contact-panel-left-pending {
+    opacity: 0;
+    transform: translate3d(-48px, 0, 0);
+  }
+
+  .contact-panel-right-pending {
+    opacity: 0;
+    transform: translate3d(48px, 0, 0);
+  }
+
+  @keyframes contact-text-in {
+    from {
+      opacity: 0;
+      filter: blur(2px);
+      transform: translate3d(0, 14px, 0);
+    }
+    to {
+      opacity: 1;
+      filter: blur(0);
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  .contact-text-enter {
+    animation: contact-text-in 650ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+  }
+
+  .contact-text-pending {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+  }
+
   @keyframes reduced-fade-in {
     from {
       opacity: 0;
@@ -113,7 +179,10 @@
     .animate-fade-in,
     .animate-slide-in-right,
     .services-copy-enter,
-    .services-card-enter {
+    .services-card-enter,
+    .contact-panel-left-enter,
+    .contact-panel-right-enter,
+    .contact-text-enter {
       animation: reduced-fade-in 220ms ease-out both;
       transform: none;
       filter: none;
@@ -122,7 +191,10 @@
     .fade-in-pending,
     .slide-in-right-pending,
     .services-copy-pending,
-    .services-card-pending {
+    .services-card-pending,
+    .contact-panel-left-pending,
+    .contact-panel-right-pending,
+    .contact-text-pending {
       opacity: 0;
       transform: none;
       filter: none;
